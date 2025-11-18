@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="MacroCard">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">80dp</item>
+        <item name="android:orientation">vertical</item>
+        <item name="android:layout_margin">4dp</item>
+        <item name="android:background">@drawable/bg_input</item>
+        <item name="android:gravity">center</item>
+        <item name="android:padding">8dp</item>
+    </style>
+
+    <style name="MacroLabel">
+        <item name="android:textSize">14sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">#444444</item>
+    </style>
+
+    <style name="MacroValue">
+        <item name="android:textSize">13sp</item>
+        <item name="android:textColor">#777777</item>
+    </style>
+
+    <style name="MealItem">
+        <item name="android:textSize">15sp</item>
+        <item name="android:textColor">#444444</item>
+        <item name="android:layout_marginBottom">6dp</item>
+    </style>
+
+</resources>

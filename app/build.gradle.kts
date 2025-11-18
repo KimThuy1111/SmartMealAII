@@ -43,4 +43,11 @@ dependencies {
     androidTestImplementation(libs.ext.junit)
     androidTestImplementation(libs.espresso.core)
     implementation("com.google.firebase:firebase-auth:23.1.0")
+    //Thu viện gọi API
+    implementation ("com.android.volley:volley:1.2.1")
+    //Thư viện load ảnh
+    implementation ("com.android.volley:volley:1.2.1")          // Dùng cho PixabayAPI
+    implementation ("com.github.bumptech.glide:glide:4.16.0")   // Dùng để tải ảnh
+
+
 }

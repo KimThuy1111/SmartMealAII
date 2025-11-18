@@ -1,6 +1,7 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:fillViewport="true"
     android:background="@drawable/bg_gradient">
 
@@ -71,20 +72,26 @@
                 android:text="Male"
                 android:layout_marginEnd="16dp"
                 app:buttonTint="#68E3B5"
-                android:textColor="#444444" />
+                android:textColor="#444444"
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"/>
 
             <RadioButton
                 android:id="@+id/genderFemale"
                 android:text="Female"
                 android:layout_marginEnd="16dp"
                 app:buttonTint="#68E3B5"
-                android:textColor="#444444" />
+                android:textColor="#444444"
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"/>
 
             <RadioButton
                 android:id="@+id/genderOther"
                 android:text="Other"
                 app:buttonTint="#68E3B5"
-                android:textColor="#444444" />
+                android:textColor="#444444"
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"/>
         </RadioGroup>
 
 
@@ -154,16 +161,18 @@
             android:layout_marginBottom="24dp" />
 
         <!-- Continue Button -->
-        <Button
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/btnContinue"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:text="Continue"
             android:textAllCaps="false"
-            android:textColor="#FFFFFF"
+            android:textColor="@color/black"
+            android:textFontWeight="@integer/material_motion_duration_short_2"
             android:background="@drawable/bg_button_gradient"
-            android:backgroundTint="@null"
-            android:textSize="16sp"
+            app:backgroundTint="@null"
+            app:cornerRadius="25dp"
+            android:textSize="22sp"
             android:layout_marginBottom="24dp" />
     </LinearLayout>
 </ScrollView>

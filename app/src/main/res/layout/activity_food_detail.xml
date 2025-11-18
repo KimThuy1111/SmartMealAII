@@ -1,0 +1,423 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#F3F7F6">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <!-- HEADER -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:gravity="center_vertical"
+            android:paddingStart="16dp"
+            android:paddingEnd="16dp">
+
+            <ImageView
+                android:id="@+id/btnBack"
+                android:layout_width="28dp"
+                android:layout_height="28dp"
+                android:src="@drawable/ic_back"
+                app:tint="#222"/>
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="Chi tiết món ăn"
+                android:textStyle="bold"
+                android:textColor="#222"
+                android:textSize="18sp"/>
+        </LinearLayout>
+
+        <!-- FOOD IMAGE -->
+        <ImageView
+            android:id="@+id/imgDetailFood"
+            android:layout_width="match_parent"
+            android:layout_height="220dp"
+            android:layout_margin="16dp"
+            android:scaleType="centerCrop"
+            android:src="@drawable/ic_food_placeholder"
+            android:clipToOutline="true"
+            android:background="#DDDDDD"/>
+
+        <!-- NAME -->
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingStart="20dp"
+            android:paddingEnd="20dp"
+            android:paddingBottom="10dp">
+
+            <TextView
+                android:id="@+id/tvDetailName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Tên món ăn"
+                android:textStyle="bold"
+                android:textSize="24sp"
+                android:textColor="#222"/>
+
+            <TextView
+                android:id="@+id/tvDetailSubtitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="English Name Here"
+                android:textSize="14sp"
+                android:textColor="#7A7A7A"
+                android:paddingTop="4dp"/>
+        </LinearLayout>
+
+        <!-- CALO CIRCLE -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="160dp"
+            android:gravity="center">
+
+            <LinearLayout
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+                android:orientation="vertical"
+                android:gravity="center"
+                android:background="@drawable/bg_circle_white">
+
+                <TextView
+                    android:id="@+id/tvDetailCalories"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="350"
+                    android:textSize="38sp"
+                    android:textStyle="bold"
+                    android:textColor="#1A7F57"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Tổng Calo"
+                    android:textSize="13sp"
+                    android:textColor="#666"/>
+            </LinearLayout>
+        </LinearLayout>
+
+        <!-- 3 MACRO BOX -->
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:padding="12dp">
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_macro_box"
+                android:padding="12dp"
+                android:gravity="center">
+
+                <TextView
+                    android:id="@+id/tvDetailProtein"
+                    android:text="Chất đạm:\n0g"
+                    android:gravity="center"
+                    android:textSize="15sp"
+                    android:textColor="#333"
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="10dp"
+                android:background="@drawable/bg_macro_box"
+                android:padding="12dp"
+                android:gravity="center">
+
+                <TextView
+                    android:id="@+id/tvDetailFat"
+                    android:text="Chất béo:\n0g"
+                    android:gravity="center"
+                    android:textSize="15sp"
+                    android:textColor="#333"
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_macro_box"
+                android:padding="12dp"
+                android:gravity="center">
+
+                <TextView
+                    android:id="@+id/tvDetailCarb"
+                    android:text="Carb:\n0g"
+                    android:gravity="center"
+                    android:textSize="15sp"
+                    android:textColor="#333"
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"/>
+            </LinearLayout>
+        </LinearLayout>
+
+        <!-- TITLE -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Thông tin dinh dưỡng chi tiết"
+            android:textStyle="bold"
+            android:textSize="18sp"
+            android:textColor="#222"
+            android:padding="20dp"/>
+
+        <!-- NUTRITION LIST -->
+        <!-- NUTRITION DETAIL LIST -->
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="16dp"
+            android:background="@android:color/transparent">
+
+            <!-- ===== ROW: Canxi ===== -->
+            <LinearLayout
+                android:id="@+id/rowCalcium"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="12dp"
+                android:background="@drawable/bg_nutri_row"
+                android:layout_marginBottom="8dp">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Canxi"
+                    android:textSize="16sp"
+                    android:textColor="#222"/>
+
+                <TextView
+                    android:id="@+id/tvDetailCalcium"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="end"
+                    android:text="0 mg"
+                    android:textSize="16sp"/>
+            </LinearLayout>
+
+            <!-- ===== ROW: Sắt ===== -->
+            <LinearLayout
+                android:id="@+id/rowIron"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="12dp"
+                android:background="@drawable/bg_nutri_row"
+                android:layout_marginBottom="8dp">
+
+                <TextView
+                    android:id="@+id/tvDetailCholesterol"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Sắt"
+                    android:textSize="16sp"
+                    android:textColor="#222"/>
+
+                <TextView
+                    android:id="@+id/tvDetailIron"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="end"
+                    android:text="0 mg"
+                    android:textSize="16sp"/>
+            </LinearLayout>
+
+            <!-- ===== ROW: Kẽm ===== -->
+            <LinearLayout
+                android:id="@+id/rowZinc"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="12dp"
+                android:background="@drawable/bg_nutri_row"
+                android:layout_marginBottom="8dp">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Kẽm"
+                    android:textSize="16sp"
+                    android:textColor="#222"/>
+
+                <TextView
+                    android:id="@+id/tvDetailZinc"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="end"
+                    android:text="0 mg"
+                    android:textSize="16sp"/>
+            </LinearLayout>
+
+            <!-- ===== ROW: Natri ===== -->
+            <LinearLayout
+                android:id="@+id/rowSodium"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="12dp"
+                android:background="@drawable/bg_nutri_row"
+                android:layout_marginBottom="8dp">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Natri"
+                    android:textSize="16sp"
+                    android:textColor="#222"/>
+
+                <TextView
+                    android:id="@+id/tvDetailSodium"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="end"
+                    android:text="0 mg"
+                    android:textSize="16sp"/>
+            </LinearLayout>
+
+            <!-- ===== ROW: Magie ===== -->
+            <LinearLayout
+                android:id="@+id/rowMagnesium"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="12dp"
+                android:background="@drawable/bg_nutri_row"
+                android:layout_marginBottom="8dp">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Magie"
+                    android:textSize="16sp"
+                    android:textColor="#222"/>
+
+                <TextView
+                    android:id="@+id/tvDetailMagnesium"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="end"
+                    android:text="0 mg"
+                    android:textSize="16sp"/>
+            </LinearLayout>
+
+            <!-- ===== Vitamin A ===== -->
+            <LinearLayout
+                android:id="@+id/rowVitaminA"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="12dp"
+                android:background="@drawable/bg_nutri_row"
+                android:layout_marginBottom="8dp">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Vitamin A"
+                    android:textSize="16sp"
+                    android:textColor="#222"/>
+
+                <TextView
+                    android:id="@+id/tvDetailVitaminA"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="end"
+                    android:text="0 µg"
+                    android:textSize="16sp"/>
+            </LinearLayout>
+
+            <!-- ===== Kali ===== -->
+            <LinearLayout
+                android:id="@+id/rowPotassium"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="12dp"
+                android:background="@drawable/bg_nutri_row"
+                android:layout_marginBottom="8dp">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Kali"
+                    android:textSize="16sp"
+                    android:textColor="#222"/>
+
+                <TextView
+                    android:id="@+id/tvDetailPotassium"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="end"
+                    android:text="0 mg"
+                    android:textSize="16sp"/>
+            </LinearLayout>
+
+            <!-- ===== MUFA + PUFA ===== -->
+            <LinearLayout
+                android:id="@+id/rowMufaPufa"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="12dp"
+                android:background="@drawable/bg_nutri_row"
+                android:layout_marginBottom="8dp">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="MUFA + PUFA"
+                    android:textSize="16sp"
+                    android:textColor="#222"/>
+
+                <TextView
+                    android:id="@+id/tvDetailMufaPufa"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="end"
+                    android:text="0 mg"
+                    android:textSize="16sp"/>
+            </LinearLayout>
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+</ScrollView>
