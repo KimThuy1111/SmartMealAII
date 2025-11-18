@@ -13,7 +13,7 @@ public class LoginActivity extends AppCompatActivity {
 
     EditText emailLogin, passwordLogin;
     Button btnLogin;
-    TextView tvRegister;
+    TextView tvSignUp;
     ProgressBar progressBar;
 
     FirebaseAuth mAuth;
@@ -24,11 +24,31 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
+        // Kiểm tra nếu đã đăng nhập rồi thì vào luôn MainActivity
+        if (FirebaseAuth.getInstance().getCurrentUser() != null) {
+            String uid = FirebaseAuth.getInstance().getCurrentUser().getUid();
+
+            FirebaseFirestore db = FirebaseFirestore.getInstance();
+            db.collection("users").document(uid).get()
+                    .addOnSuccessListener(documentSnapshot -> {
+                        if (documentSnapshot.exists()) {
+                            User user = documentSnapshot.toObject(User.class);
+                            Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                            intent.putExtra("user_name", user.getName());
+                            intent.putExtra("user_email", user.getEmail());
+                            intent.putExtra("user_goal", user.getGoal());
+                            startActivity(intent);
+                            finish();
+                        }
+                    });
+        }
+
+
         // --- Ánh xạ view ---
         emailLogin = findViewById(R.id.emailLogin);
         passwordLogin = findViewById(R.id.passwordLogin);
         btnLogin = findViewById(R.id.btnLogin);
-        tvRegister = findViewById(R.id.tvRegister);
+        tvSignUp = findViewById(R.id.tvSignUp);
         progressBar = findViewById(R.id.progressBar);
 
         // --- Firebase ---
@@ -36,7 +56,7 @@ public class LoginActivity extends AppCompatActivity {
         db = FirebaseFirestore.getInstance();
 
         btnLogin.setOnClickListener(v -> loginUser());
-        tvRegister.setOnClickListener(v -> startActivity(new Intent(this, RegisterActivity.class)));
+        tvSignUp.setOnClickListener(v -> startActivity(new Intent(this, RegisterActivity.class)));
     }
 
     private void loginUser() {

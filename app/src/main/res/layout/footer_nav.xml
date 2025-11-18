@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/footerNav"
+    android:layout_width="match_parent"
+    android:layout_height="70dp"
+    android:background="#FFFFFF"
+    android:paddingTop="6dp"
+    android:paddingBottom="6dp"
+    android:elevation="8dp"
+    android:orientation="horizontal"
+    android:gravity="center">
+
+    <!-- HOME -->
+    <LinearLayout
+        android:id="@+id/tabHome"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:orientation="vertical"
+        android:gravity="center">
+
+        <ImageView
+            android:id="@+id/iconHome"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:src="@drawable/ic_home" />
+
+        <TextView
+            android:id="@+id/txtHome"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Trang chủ"
+            android:textColor="#777"
+            android:textSize="12sp" />
+    </LinearLayout>
+
+    <!-- DIARY -->
+    <LinearLayout
+        android:id="@+id/tabDiary"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:orientation="vertical"
+        android:gravity="center">
+
+        <ImageView
+            android:id="@+id/iconDiary"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:src="@drawable/ic_diary" />
+
+        <TextView
+            android:id="@+id/txtDiary"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Nhật ký"
+            android:textColor="#777"
+            android:textSize="12sp" />
+    </LinearLayout>
+
+    <!-- SUGGEST -->
+    <LinearLayout
+        android:id="@+id/tabSuggest"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:orientation="vertical"
+        android:gravity="center">
+
+        <ImageView
+            android:id="@+id/iconSuggest"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:src="@drawable/ic_search" />
+
+        <TextView
+            android:id="@+id/txtSuggest"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Gợi ý"
+            android:textColor="#777"
+            android:textSize="12sp" />
+    </LinearLayout>
+
+    <!-- USER -->
+    <LinearLayout
+        android:id="@+id/tabUser"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:orientation="vertical"
+        android:gravity="center">
+
+        <ImageView
+            android:id="@+id/iconUser"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:src="@drawable/ic_user" />
+
+        <TextView
+            android:id="@+id/txtUser"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Hồ sơ"
+            android:textColor="#777"
+            android:textSize="12sp" />
+    </LinearLayout>
+
+</LinearLayout>

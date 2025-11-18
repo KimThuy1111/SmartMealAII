@@ -4,7 +4,7 @@
 
     <!-- Nền gradient pastel -->
     <gradient
-        android:startColor="#F0FFF0"
+        android:startColor="#E4FFE4"
         android:endColor="#FFFFFF"
         android:angle="100" />
 

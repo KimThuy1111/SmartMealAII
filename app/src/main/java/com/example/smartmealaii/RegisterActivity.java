@@ -11,6 +11,7 @@ public class RegisterActivity extends AppCompatActivity {
     EditText emailRegister, passwordRegister, confirmPassword, nameInput;
     Button btnNext;
     FirebaseAuth mAuth;
+    TextView tvLogin;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,6 +24,9 @@ public class RegisterActivity extends AppCompatActivity {
         confirmPassword = findViewById(R.id.confirmPassword);
         nameInput = findViewById(R.id.nameInput);
         btnNext = findViewById(R.id.btnRegister);
+        tvLogin =  findViewById(R.id.tvLogin);
+
+        tvLogin.setOnClickListener(v -> startActivity(new Intent(this, LoginActivity.class)));
 
         mAuth = FirebaseAuth.getInstance();
 

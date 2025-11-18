@@ -4,8 +4,8 @@
 
     <!-- Gradient xanh pastel nhẹ -->
     <gradient
-        android:startColor="#92DCE9"
-        android:endColor="#A5ECC0"
+        android:startColor="#79EEF2"
+        android:endColor="#78F09C"
         android:angle="00"/>
 
     <corners android:radius="25dp" />
