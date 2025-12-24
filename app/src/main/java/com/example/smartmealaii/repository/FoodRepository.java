@@ -60,6 +60,7 @@ public class FoodRepository {
                 f.sodium = o.optDouble("Natri", 0);
                 f.cholesterol = o.optDouble("Cholesterol", 0);
                 f.magnesium = o.optDouble("Magie", 0);
+                f.setImage(o.getString("image"));
 
                 list.add(f);
             }

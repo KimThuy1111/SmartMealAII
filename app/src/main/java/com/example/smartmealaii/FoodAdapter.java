@@ -11,7 +11,6 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
-import com.example.smartmealaii.api.PexelsAPI;
 import com.example.smartmealaii.model.Food;
 
 import java.util.List;
@@ -46,37 +45,25 @@ public class FoodAdapter extends RecyclerView.Adapter<FoodAdapter.ViewHolder> {
         Food food = foodList.get(position);
 
         holder.tvName.setText(food.getName());
-        holder.tvCalories.setText(String.format(Locale.getDefault(), "%.0f cal", food.getCalories()));
+        holder.tvCalories.setText(
+                String.format(Locale.getDefault(), "%.0f cal", food.getCalories())
+        );
 
-        // Reset placeholder
-        holder.imgFood.setImageResource(R.drawable.ic_food_placeholder);
+        String imageUrl = food.getImage();
 
-        // ⭐ Dùng English Name để tìm ảnh
-        String keyword = food.getEnglishName();
-        if (keyword == null || keyword.isEmpty()) {
-            keyword = food.getName(); // fallback nếu thiếu dữ liệu
+        if (imageUrl != null && !imageUrl.isEmpty()) {
+            Glide.with(context)
+                    .load(imageUrl)
+                    .placeholder(R.drawable.ic_food_placeholder)
+                    .error(R.drawable.ic_food_placeholder)
+                    .into(holder.imgFood);
+        } else {
+            holder.imgFood.setImageResource(R.drawable.ic_food_placeholder);
         }
-
-        // Gọi Pexels API
-        PexelsAPI.searchImage(context, keyword, new PexelsAPI.ImageCallback() {
-            @Override
-            public void onSuccess(String url) {
-                if (holder.itemView.isAttachedToWindow()) {
-                    Glide.with(context)
-                            .load(url)
-                            .placeholder(R.drawable.ic_food_placeholder)
-                            .into(holder.imgFood);
-                }
-            }
-
-            @Override
-            public void onError() {
-                holder.imgFood.setImageResource(R.drawable.ic_food_placeholder);
-            }
-        });
 
         holder.itemView.setOnClickListener(v -> listener.onItemClicked(food));
     }
+
 
     @Override
     public int getItemCount() {

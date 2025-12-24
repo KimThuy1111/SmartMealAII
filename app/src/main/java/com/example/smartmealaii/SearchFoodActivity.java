@@ -49,10 +49,12 @@ public class SearchFoodActivity extends AppCompatActivity {
         repo = FoodRepository.getInstance(this);
 
         adp = new FoodAdapter(this, data, f -> {
+
             Intent i = new Intent(this, FoodDetailActivity.class);
             i.putExtra("food_data", f);
             startActivity(i);
         });
+
 
         rcv.setLayoutManager(new LinearLayoutManager(this));
         rcv.setAdapter(adp);

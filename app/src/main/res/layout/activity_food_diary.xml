@@ -1,0 +1,354 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#F3F7F6">
+
+    <!-- HEADER -->
+    <LinearLayout
+        android:id="@+id/header"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:orientation="horizontal"
+        android:padding="16dp"
+        android:gravity="center_vertical">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Nhật ký ăn uống"
+            android:gravity="center"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:textColor="#1A2B27" />
+
+    </LinearLayout>
+
+    <!-- DATE SELECTOR -->
+    <LinearLayout
+        android:id="@+id/date_selector"
+        android:layout_width="match_parent"
+        android:layout_height="42dp"
+        android:layout_below="@id/header"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:paddingHorizontal="22dp">
+
+        <TextView
+            android:text="&lt;"
+            android:textSize="18sp"
+            android:textColor="#2A6655"
+            android:layout_marginEnd="12dp"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"/>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content">
+
+            <TextView
+                android:text="Hôm qua"
+                android:padding="6dp"
+                android:textColor="#598A7A"
+                android:background="@drawable/date_border"
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"/>
+
+            <TextView
+                android:text="Hôm nay"
+                android:padding="6dp"
+                android:layout_marginHorizontal="8dp"
+                android:textColor="#FFFFFF"
+                android:background="@drawable/date_fill"
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"/>
+
+            <TextView
+                android:text="Ngày mai"
+                android:padding="6dp"
+                android:textColor="#598A7A"
+                android:background="@drawable/date_border"
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"/>
+        </LinearLayout>
+
+        <TextView
+            android:text="&gt;"
+            android:textSize="18sp"
+            android:textColor="#2A6655"
+            android:layout_marginStart="12dp"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"/>
+    </LinearLayout>
+
+    <!-- MAIN CONTENT -->
+    <ScrollView
+        android:id="@+id/scroll"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/date_selector"
+        android:layout_above="@id/bottom_nav"
+        android:padding="16dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <!-- CALORIES CIRCLE -->
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:gravity="center">
+
+                <ImageView
+                    android:layout_width="165dp"
+                    android:layout_height="165dp"
+                    android:src="@drawable/bg_circle_card"
+                    android:layout_marginTop="0px"/>
+
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:gravity="center"
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    android:layout_marginLeft="100px"
+                    android:layout_marginTop="100px">
+
+                    <TextView
+                        android:text="1450"
+                        android:textSize="40sp"
+                        android:textStyle="bold"
+                        android:textColor="#1A2B27"
+                        android:layout_height="wrap_content"
+                        android:layout_width="wrap_content"/>
+
+                    <TextView
+                        android:text="kcal consumed"
+                        android:textSize="13sp"
+                        android:textColor="#6E7F7A"
+                        android:layout_height="wrap_content"
+                        android:layout_width="wrap_content"/>
+                </LinearLayout>
+            </RelativeLayout>
+
+            <!-- MACRO GRID -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:weightSum="4">
+
+                <!-- Protein -->
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="90dp"
+                    android:layout_weight="1"
+                    android:padding="12dp"
+                    android:background="@drawable/card_meal"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:text="Protein"
+                        android:textStyle="bold"
+                        android:textSize="15sp"
+                        android:textColor="#1A2B27"
+                        android:layout_height="wrap_content"
+                        android:layout_width="wrap_content"/>
+
+                    <TextView
+                        android:text="50g / 120g"
+                        android:textSize="14sp"
+                        android:textColor="#6E7F7A"
+                        android:layout_height="wrap_content"
+                        android:layout_width="wrap_content"/>
+                </LinearLayout>
+
+                <View android:layout_width="8dp" android:layout_height="match_parent"/>
+
+                <!-- Carb -->
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="90dp"
+                    android:layout_weight="1"
+                    android:padding="12dp"
+                    android:background="@drawable/card_meal"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:text="Carb"
+                        android:textStyle="bold"
+                        android:textSize="15sp"
+                        android:textColor="#1A2B27"
+                        android:layout_height="wrap_content"
+                        android:layout_width="wrap_content"/>
+
+                    <TextView
+                        android:text="150g / 250g"
+                        android:textSize="14sp"
+                        android:textColor="#6E7F7A"
+                        android:layout_height="wrap_content"
+                        android:layout_width="wrap_content"/>
+                </LinearLayout>
+
+                <View android:layout_width="8dp" android:layout_height="match_parent"/>
+
+                <!-- Fat -->
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="90dp"
+                    android:layout_weight="1"
+                    android:padding="12dp"
+                    android:background="@drawable/card_meal"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:text="Fat"
+                        android:textStyle="bold"
+                        android:textSize="15sp"
+                        android:textColor="#1A2B27"
+                        android:layout_height="wrap_content"
+                        android:layout_width="wrap_content"/>
+
+                    <TextView
+                        android:text="40g / 40g"
+                        android:textSize="14sp"
+                        android:textColor="#6E7F7A"
+                        android:layout_height="wrap_content"
+                        android:layout_width="wrap_content"/>
+                </LinearLayout>
+
+                <View android:layout_width="8dp" android:layout_height="match_parent"/>
+
+                <!-- Water -->
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="90dp"
+                    android:layout_weight="1"
+                    android:padding="12dp"
+                    android:background="@drawable/card_meal"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:text="Nước"
+                        android:textStyle="bold"
+                        android:textSize="15sp"
+                        android:textColor="#1A2B27"
+                        android:layout_height="wrap_content"
+                        android:layout_width="wrap_content"/>
+
+                    <TextView
+                        android:text="8.0L / 2L"
+                        android:textSize="14sp"
+                        android:textColor="#6E7F7A"
+                        android:layout_height="wrap_content"
+                        android:layout_width="wrap_content"/>
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <!-- BỮA SÁNG -->
+            <TextView
+                android:text="Bữa sáng"
+                android:textStyle="bold"
+                android:textSize="16sp"
+                android:layout_marginTop="20dp"
+                android:textColor="#1A2B27"
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"/>
+
+            <!-- 2 MÓN -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:background="@drawable/card_meal"
+                android:padding="12dp"
+                android:layout_marginTop="8dp">
+
+                <TextView
+                    android:text="Bánh mì trứng (350 cal)"
+                    android:textSize="15sp"
+                    android:textColor="#1A2B27"
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"/>
+
+                <TextView
+                    android:text="Salad gà (280)"
+                    android:textSize="15sp"
+                    android:textColor="#1A2B27"
+                    android:layout_marginTop="4dp"
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"/>
+            </LinearLayout>
+
+            <!-- BỮA TỐI -->
+            <TextView
+                android:text="Tưa tối"
+                android:textStyle="bold"
+                android:textSize="16sp"
+                android:layout_marginTop="20dp"
+                android:textColor="#1A2B27"
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:background="@drawable/card_meal"
+                android:padding="12dp"
+                android:layout_marginTop="8dp">
+
+                <TextView
+                    android:text="Trưa: Salad gà (280 cal)"
+                    android:textSize="15sp"
+                    android:textColor="#1A2B27"
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"/>
+
+                <TextView
+                    android:text="Tối: Phở cuốn"
+                    android:textSize="15sp"
+                    android:layout_marginTop="4dp"
+                    android:textColor="#1A2B27"
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"/>
+            </LinearLayout>
+
+            <View android:layout_height="80dp" android:layout_width="match_parent"/>
+
+        </LinearLayout>
+    </ScrollView>
+
+    <!-- FLOAT BUTTON -->
+    <ImageView
+        android:id="@+id/btnAddMealRound"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:background="@drawable/bg_addmeal_circle"
+        android:padding="12dp"
+        android:src="@drawable/ic_add_meal"
+        android:elevation="8dp"
+
+        android:layout_alignParentEnd="true"
+        android:layout_marginEnd="20dp"
+
+        android:layout_above="@id/bottom_nav"
+        android:layout_marginBottom="25dp" />
+
+
+    <!-- BOTTOM NAV -->
+    <include
+        android:id="@+id/bottom_nav"
+        layout="@layout/footer_nav"
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:layout_alignParentBottom="true"/>
+
+
+
+</RelativeLayout>
