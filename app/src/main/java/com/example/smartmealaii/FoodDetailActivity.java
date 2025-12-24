@@ -8,7 +8,9 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
-import com.example.smartmealaii.api.PexelsAPI;
+import com.bumptech.glide.load.model.GlideUrl;
+import com.bumptech.glide.load.model.LazyHeaders;
+
 import com.example.smartmealaii.model.Food;
 
 import java.util.Locale;
@@ -17,7 +19,7 @@ public class FoodDetailActivity extends AppCompatActivity {
 
     ImageView img,btnBack;
     TextView name, cal, protein, fat, carb;
-    TextView ca, iron, zinc, sodium, mag, chol, vitA, potassium, mufa;
+    TextView ca, iron, zinc, sodium, mag,  vitA, potassium, mufa;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,7 +39,7 @@ public class FoodDetailActivity extends AppCompatActivity {
         sodium = findViewById(R.id.tvDetailSodium);
         mag = findViewById(R.id.tvDetailMagnesium);
 
-        chol = findViewById(R.id.tvDetailCholesterol);
+//        chol = findViewById(R.id.tvDetailCholesterol);
         vitA = findViewById(R.id.tvDetailVitaminA);
         potassium = findViewById(R.id.tvDetailPotassium);
         mufa = findViewById(R.id.tvDetailMufaPufa);
@@ -48,19 +50,21 @@ public class FoodDetailActivity extends AppCompatActivity {
 
         name.setText(f.getName());
         cal.setText(String.format(Locale.getDefault(), "%.0f cal", f.getCalories()));
-        protein.setText("" + f.getProtein());
-        fat.setText("" + f.getFat());
-        carb.setText("" + f.getCarbohydrate());
+        protein.setText("Protein\n" + f.getProtein());
+        fat.setText("Fat\n" + f.getFat());
+        carb.setText("Carbon\n" + f.getCarbohydrate());
 
         ca.setText("" + f.getCalcium());
         iron.setText("" + f.getIron());
         zinc.setText("" + f.getZinc());
         sodium.setText("" + f.getSodium());
         mag.setText("" + f.getMagnesium());
-        chol.setText("" + f.getCholesterol());
+//        chol.setText("" + f.getCholesterol());
         vitA.setText("" + f.getVitaminA());
         potassium.setText("" + f.getPotassium());
         mufa.setText("" + f.getMufaPufa());
+
+
 
         btnBack = findViewById(R.id.btnBack);
         // 2. Xử lý sự kiện Click cho nút Back
@@ -74,21 +78,18 @@ public class FoodDetailActivity extends AppCompatActivity {
         });
 
         // Load ảnh
-        String keyword = f.getEnglishName();
-        if (keyword == null || keyword.trim().isEmpty())
-            keyword = f.getName();
+        String imageUrl = f.getImage();
 
-        PexelsAPI.searchImage(this, keyword, new PexelsAPI.ImageCallback() {
-            @Override
-            public void onSuccess(String url) {
-                Glide.with(FoodDetailActivity.this)
-                        .load(url)
-                        .placeholder(R.drawable.ic_food_placeholder)
-                        .into(img);
-            }
+        if (imageUrl != null && !imageUrl.isEmpty()) {
+            Glide.with(this)
+                    .load(imageUrl)
+                    .placeholder(R.drawable.ic_food_placeholder)
+                    .error(R.drawable.ic_food_placeholder)
+                    .into(img);
+        }
 
-            @Override
-            public void onError() { }
-        });
+
+
+
     }
 }

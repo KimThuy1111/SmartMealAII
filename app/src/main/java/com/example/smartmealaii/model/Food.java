@@ -8,6 +8,11 @@ public class Food implements Serializable {
     public String name;
     public String englishName;
 
+    private String image;
+
+    public String getImage() {
+        return image;
+    }
     public double calories;
     public double protein;
     public double fat;
@@ -105,5 +110,9 @@ public class Food implements Serializable {
 
     public double getTransfat() {
         return transfat;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
     }
 }
