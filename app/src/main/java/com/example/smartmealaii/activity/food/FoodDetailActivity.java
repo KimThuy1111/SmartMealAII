@@ -1,16 +1,14 @@
-package com.example.smartmealaii;
-
-import androidx.appcompat.app.AppCompatActivity;
+package com.example.smartmealaii.activity.food;
 
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.bumptech.glide.Glide;
-import com.bumptech.glide.load.model.GlideUrl;
-import com.bumptech.glide.load.model.LazyHeaders;
+import androidx.appcompat.app.AppCompatActivity;
 
+import com.bumptech.glide.Glide;
+import com.example.smartmealaii.R;
 import com.example.smartmealaii.model.Food;
 
 import java.util.Locale;
@@ -52,7 +50,7 @@ public class FoodDetailActivity extends AppCompatActivity {
         cal.setText(String.format(Locale.getDefault(), "%.0f cal", f.getCalories()));
         protein.setText("Protein\n" + f.getProtein());
         fat.setText("Fat\n" + f.getFat());
-        carb.setText("Carbon\n" + f.getCarbohydrate());
+        carb.setText("Carbs\n" + f.getCarbs());
 
         ca.setText("" + f.getCalcium());
         iron.setText("" + f.getIron());

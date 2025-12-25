@@ -101,39 +101,38 @@
             <!-- CALORIES CIRCLE -->
             <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="200dp"
-                android:gravity="center">
+                android:layout_height="200dp">
 
                 <ImageView
+                    android:id="@+id/circle"
                     android:layout_width="165dp"
                     android:layout_height="165dp"
-                    android:src="@drawable/bg_circle_card"
-                    android:layout_marginTop="0px"/>
+                    android:layout_centerInParent="true"
+                    android:src="@drawable/bg_circle_card"/>
 
                 <LinearLayout
-                    android:orientation="vertical"
-                    android:gravity="center"
-                    android:layout_height="wrap_content"
                     android:layout_width="wrap_content"
-                    android:layout_marginLeft="100px"
-                    android:layout_marginTop="100px">
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:orientation="vertical"
+                    android:gravity="center">
 
                     <TextView
                         android:text="1450"
                         android:textSize="40sp"
                         android:textStyle="bold"
-                        android:textColor="#1A2B27"
                         android:layout_height="wrap_content"
                         android:layout_width="wrap_content"/>
 
                     <TextView
                         android:text="kcal consumed"
                         android:textSize="13sp"
-                        android:textColor="#6E7F7A"
                         android:layout_height="wrap_content"
                         android:layout_width="wrap_content"/>
                 </LinearLayout>
+
             </RelativeLayout>
+
 
             <!-- MACRO GRID -->
             <LinearLayout
@@ -260,34 +259,16 @@
                 android:layout_height="wrap_content"
                 android:layout_width="wrap_content"/>
 
-            <!-- 2 MÓN -->
-            <LinearLayout
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rcvBreakfast"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:background="@drawable/card_meal"
-                android:padding="12dp"
-                android:layout_marginTop="8dp">
+                android:nestedScrollingEnabled="false"/>
 
-                <TextView
-                    android:text="Bánh mì trứng (350 cal)"
-                    android:textSize="15sp"
-                    android:textColor="#1A2B27"
-                    android:layout_height="wrap_content"
-                    android:layout_width="wrap_content"/>
 
-                <TextView
-                    android:text="Salad gà (280)"
-                    android:textSize="15sp"
-                    android:textColor="#1A2B27"
-                    android:layout_marginTop="4dp"
-                    android:layout_height="wrap_content"
-                    android:layout_width="wrap_content"/>
-            </LinearLayout>
-
-            <!-- BỮA TỐI -->
+            <!-- BỮA TRƯA -->
             <TextView
-                android:text="Tưa tối"
+                android:text="Bữa trưa"
                 android:textStyle="bold"
                 android:textSize="16sp"
                 android:layout_marginTop="20dp"
@@ -295,29 +276,28 @@
                 android:layout_height="wrap_content"
                 android:layout_width="wrap_content"/>
 
-            <LinearLayout
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rcvLunch"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:background="@drawable/card_meal"
-                android:padding="12dp"
-                android:layout_marginTop="8dp">
+                android:nestedScrollingEnabled="false"/>
 
-                <TextView
-                    android:text="Trưa: Salad gà (280 cal)"
-                    android:textSize="15sp"
-                    android:textColor="#1A2B27"
-                    android:layout_height="wrap_content"
-                    android:layout_width="wrap_content"/>
+            <!--BỮA TỐI-->
+            <TextView
+                android:text="Bữa tối"
+                android:textStyle="bold"
+                android:textSize="16sp"
+                android:layout_marginTop="20dp"
+                android:textColor="#1A2B27"
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"/>
 
-                <TextView
-                    android:text="Tối: Phở cuốn"
-                    android:textSize="15sp"
-                    android:layout_marginTop="4dp"
-                    android:textColor="#1A2B27"
-                    android:layout_height="wrap_content"
-                    android:layout_width="wrap_content"/>
-            </LinearLayout>
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rcvDinner"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:nestedScrollingEnabled="false"/>
+
 
             <View android:layout_height="80dp" android:layout_width="match_parent"/>
 

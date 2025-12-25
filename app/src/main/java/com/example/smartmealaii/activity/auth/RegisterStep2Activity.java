@@ -1,9 +1,18 @@
-package com.example.smartmealaii;
+package com.example.smartmealaii.activity.auth;
 
-import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.widget.*;
+import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
+import android.widget.Spinner;
+import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatActivity;
+
+import com.example.smartmealaii.R;
 import com.example.smartmealaii.model.User;
 import com.google.firebase.firestore.FirebaseFirestore;
 

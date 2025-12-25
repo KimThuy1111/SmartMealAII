@@ -1,13 +1,20 @@
-package com.example.smartmealaii;
+package com.example.smartmealaii.activity.auth;
 
-import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.widget.*;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.ProgressBar;
+import android.widget.TextView;
+import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatActivity;
+
+import com.example.smartmealaii.MainActivity;
+import com.example.smartmealaii.R;
 import com.example.smartmealaii.model.User;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.DocumentSnapshot;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -44,14 +51,14 @@ public class LoginActivity extends AppCompatActivity {
         }
 
 
-        // --- Ánh xạ view ---
+        // Ánh xạ view
         emailLogin = findViewById(R.id.emailLogin);
         passwordLogin = findViewById(R.id.passwordLogin);
         btnLogin = findViewById(R.id.btnLogin);
         tvSignUp = findViewById(R.id.tvSignUp);
         progressBar = findViewById(R.id.progressBar);
 
-        // --- Firebase ---
+        // Firebase
         mAuth = FirebaseAuth.getInstance();
         db = FirebaseFirestore.getInstance();
 
@@ -70,12 +77,12 @@ public class LoginActivity extends AppCompatActivity {
 
         showLoading(true);
 
-        // --- Firebase Authentication ---
+        // Firebase Authentication
         mAuth.signInWithEmailAndPassword(email, password)
                 .addOnSuccessListener(authResult -> {
                     String uid = mAuth.getCurrentUser().getUid();
 
-                    // --- Lấy thông tin người dùng từ Firestore ---
+                    // Lấy thông tin người dùng từ Firestore
                     db.collection("users").document(uid).get()
                             .addOnSuccessListener(documentSnapshot -> {
                                 if (documentSnapshot.exists()) {

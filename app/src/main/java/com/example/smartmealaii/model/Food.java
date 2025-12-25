@@ -4,115 +4,60 @@ import java.io.Serializable;
 
 public class Food implements Serializable {
 
-    // Cho phép FoodRepository gán trực tiếp không cần setter
-    public String name;
-    public String englishName;
-
+    private String id;
+    private String name;
+    private String englishName;
     private String image;
 
-    public String getImage() {
-        return image;
-    }
-    public double calories;
-    public double protein;
-    public double fat;
-    public double carbohydrate;
+    private double calories;
+    private double protein;
+    private double fat;
 
-    public double vitaminA;
-    public double potassium;
-    public double mufaPufa;
-    public double calcium;
-    public double iron;
-    public double zinc;
-    public double sodium;
-    public double cholesterol;
-    public double magnesium;
 
-    // OPTIONAL thêm vitamin C / beta-caroten / transfat nếu có
-    public double vitaminC;
-    public double betaCaroten;
-    public double transfat;
+    private double calcium;
+    private double iron;
+    private double zinc;
+    private double sodium;
+    private double magnesium;
 
-    public Food() {
+    private double vitaminA;
+    private double potassium;
+    private double mufaPufa;
+    private double carbs;
+
+    public double getCarbs() {
+        return carbs;
     }
 
-    // ==== Getter dùng cho Adapter và DetailActivity ====
-
-    public String getName() {
-        return name;
+    public void setCarbs(double carbs) {
+        this.carbs = carbs;
     }
 
-    public String getEnglishName() {
-        return englishName == null || englishName.isEmpty()
-                ? name            // fallback tiếng Việt nếu không có English
-                : englishName;
-    }
 
-    public double getCalories() {
-        return calories;
-    }
+    // 🔹 BẮT BUỘC constructor rỗng cho Firestore
+    public Food() {}
 
-    public double getProtein() {
-        return protein;
-    }
+    // getter & setter (chỉ ví dụ vài cái)
+    public String getId() { return id; }
+    public void setId(String id) { this.id = id; }
 
-    public double getFat() {
-        return fat;
-    }
+    public String getName() { return name; }
+    public String getImage() { return image; }
 
-    public double getCarbohydrate() {
-        return carbohydrate;
-    }
+    public double getCalories() { return calories; }
+    public double getProtein() { return protein; }
+    public double getFat() { return fat; }
+    public double getCarbohydrate() { return carbs; }
 
-    public double getVitaminA() {
-        return vitaminA;
-    }
+    public double getCalcium() { return calcium; }
+    public double getIron() { return iron; }
+    public double getZinc() { return zinc; }
+    public double getSodium() { return sodium; }
+    public double getMagnesium() { return magnesium; }
 
-    public double getPotassium() {
-        return potassium;
-    }
+    public double getVitaminA() { return vitaminA; }
+    public double getPotassium() { return potassium; }
+    public double getMufaPufa() { return mufaPufa; }
 
-    public double getMufaPufa() {
-        return mufaPufa;
-    }
 
-    public double getCalcium() {
-        return calcium;
-    }
-
-    public double getIron() {
-        return iron;
-    }
-
-    public double getZinc() {
-        return zinc;
-    }
-
-    public double getSodium() {
-        return sodium;
-    }
-
-    public double getCholesterol() {
-        return cholesterol;
-    }
-
-    public double getMagnesium() {
-        return magnesium;
-    }
-
-    public double getVitaminC() {
-        return vitaminC;
-    }
-
-    public double getBetaCaroten() {
-        return betaCaroten;
-    }
-
-    public double getTransfat() {
-        return transfat;
-    }
-
-    public void setImage(String image) {
-        this.image = image;
-    }
 }

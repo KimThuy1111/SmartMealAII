@@ -1,4 +1,4 @@
-package com.example.smartmealaii;
+package com.example.smartmealaii.activity.food;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -11,6 +11,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.example.smartmealaii.R;
 import com.example.smartmealaii.model.Food;
 
 import java.util.List;
@@ -18,15 +19,21 @@ import java.util.Locale;
 
 public class FoodAdapter extends RecyclerView.Adapter<FoodAdapter.ViewHolder> {
 
-    private List<Food> foodList;
-    private OnFoodClickListener listener;
     private Context context;
+    private List<Food> foodList;
+    private OnFoodActionListener listener;
 
-    public interface OnFoodClickListener {
-        void onItemClicked(Food food);
+    // =====================
+    // INTERFACE
+    // =====================
+    public interface OnFoodActionListener {
+        void onAddFood(Food food);
     }
 
-    public FoodAdapter(Context context, List<Food> foodList, OnFoodClickListener listener) {
+    // =====================
+    // CONSTRUCTOR
+    // =====================
+    public FoodAdapter(Context context, List<Food> foodList, OnFoodActionListener listener) {
         this.context = context;
         this.foodList = foodList;
         this.listener = listener;
@@ -49,11 +56,9 @@ public class FoodAdapter extends RecyclerView.Adapter<FoodAdapter.ViewHolder> {
                 String.format(Locale.getDefault(), "%.0f cal", food.getCalories())
         );
 
-        String imageUrl = food.getImage();
-
-        if (imageUrl != null && !imageUrl.isEmpty()) {
+        if (food.getImage() != null && !food.getImage().isEmpty()) {
             Glide.with(context)
-                    .load(imageUrl)
+                    .load(food.getImage())
                     .placeholder(R.drawable.ic_food_placeholder)
                     .error(R.drawable.ic_food_placeholder)
                     .into(holder.imgFood);
@@ -61,23 +66,22 @@ public class FoodAdapter extends RecyclerView.Adapter<FoodAdapter.ViewHolder> {
             holder.imgFood.setImageResource(R.drawable.ic_food_placeholder);
         }
 
-        holder.itemView.setOnClickListener(v -> listener.onItemClicked(food));
+        // 👉 CLICK DẤU +
+        holder.btnAdd.setOnClickListener(v -> {
+            if (listener != null) {
+                listener.onAddFood(food);
+            }
+        });
     }
-
 
     @Override
     public int getItemCount() {
         return foodList != null ? foodList.size() : 0;
     }
 
-    public void updateData(List<Food> list) {
-        foodList.clear();
-        foodList.addAll(list);
-        notifyDataSetChanged();
-    }
-
     public static class ViewHolder extends RecyclerView.ViewHolder {
-        ImageView imgFood;
+
+        ImageView imgFood, btnAdd;
         TextView tvName, tvCalories;
 
         public ViewHolder(@NonNull View itemView) {
@@ -85,6 +89,7 @@ public class FoodAdapter extends RecyclerView.Adapter<FoodAdapter.ViewHolder> {
             imgFood = itemView.findViewById(R.id.imgFood);
             tvName = itemView.findViewById(R.id.tvFoodName);
             tvCalories = itemView.findViewById(R.id.tvCalories);
+            btnAdd = itemView.findViewById(R.id.btnAdd);
         }
     }
 }
