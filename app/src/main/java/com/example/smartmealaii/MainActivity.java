@@ -1,26 +1,23 @@
 package com.example.smartmealaii;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AppCompatActivity;
+
+import com.example.smartmealaii.activity.FooterNavigator;
+import com.example.smartmealaii.activity.auth.LoginActivity;
+import com.example.smartmealaii.activity.food.SearchFoodActivity;
+import com.example.smartmealaii.model.User;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 public class MainActivity extends AppCompatActivity {
 
     private TextView tvGreeting, tvCalories, tvGoal, tvBreakfast, tvLunch, tvDinner;
-
-    // Footer navigation
-    private LinearLayout tabHome, tabDiary, tabSuggest, tabUser;
-    private ImageView iconHome, iconDiary, iconSuggest, iconUser;
-    private TextView txtHome, txtDiary, txtSuggest, txtUser;
 
     FirebaseAuth mAuth;
     FirebaseFirestore db;
@@ -29,10 +26,8 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        // Thêm ở đầu onCreate
         ImageView btnAddMeal = findViewById(R.id.btnAddMealRound);
-
-// Khi bấm dấu +
+        // Khi bấm dấu +
         btnAddMeal.setOnClickListener(v -> {
             Intent intent = new Intent(MainActivity.this, SearchFoodActivity.class);
             startActivity(intent);
@@ -48,35 +43,63 @@ public class MainActivity extends AppCompatActivity {
         tvDinner = findViewById(R.id.tvDinner);
 
         // Ánh xạ FOOTER
-        tabHome = findViewById(R.id.tabHome);
-        tabDiary = findViewById(R.id.tabDiary);
-        tabSuggest = findViewById(R.id.tabSuggest);
-        tabUser = findViewById(R.id.tabUser);
 
-        iconHome = findViewById(R.id.iconHome);
-        iconDiary = findViewById(R.id.iconDiary);
-        iconSuggest = findViewById(R.id.iconSuggest);
-        iconUser = findViewById(R.id.iconUser);
-
-        txtHome = findViewById(R.id.txtHome);
-        txtDiary = findViewById(R.id.txtDiary);
-        txtSuggest = findViewById(R.id.txtSuggest);
-        txtUser = findViewById(R.id.txtUser);
+        FooterNavigator.setup(this, FooterNavigator.TAB_HOME);
 
         mAuth = FirebaseAuth.getInstance();
         db = FirebaseFirestore.getInstance();
 
-        // Nếu chưa đăng nhập → quay lại LoginActivity
+        // Nếu chưa đăng nhập quay lại LoginActivity
         if (mAuth.getCurrentUser() == null) {
             startActivity(new Intent(this, LoginActivity.class));
             finish();
             return;
         }
-
-        highlightSelectedTab(0); // chọn Home mặc định
-        setupFooterNavigation();
         loadUserData();
     }
+    private double getActivityFactor(String activity) {
+
+        if (activity == null) return 1.2;
+
+        switch (activity.toLowerCase()) {
+            case "low":
+            case "ít vận động":
+                return 1.2;
+
+            case "medium":
+            case "trung bình":
+                return 1.55;
+
+            case "high":
+            case "nhiều":
+                return 1.725;
+
+            default:
+                return 1.2;
+        }
+    }
+
+    private int calculateTDEE(User user) {
+
+        double bmr;
+
+        if (user.getGender().equalsIgnoreCase("male")) {
+            bmr = 10 * user.getWeight()
+                    + 6.25 * user.getHeight()
+                    - 5 * user.getAge()
+                    + 5;
+        } else {
+            bmr = 10 * user.getWeight()
+                    + 6.25 * user.getHeight()
+                    - 5 * user.getAge()
+                    - 161;
+        }
+
+        double activityFactor = getActivityFactor(user.getActivity());
+
+        return (int) Math.round(bmr * activityFactor);
+    }
+
 
     private void loadUserData() {
         String uid = mAuth.getCurrentUser().getUid();
@@ -85,12 +108,16 @@ public class MainActivity extends AppCompatActivity {
                 .addOnSuccessListener(doc -> {
                     if (doc.exists()) {
 
+                        User user = doc.toObject(User.class);
+                        if (user == null) return;
+
                         String name = doc.getString("name");
                         String goal = doc.getString("goal");
 
                         tvGreeting.setText("Chào buổi sáng, " + name + "!");
                         tvGoal.setText("Mục tiêu: " + goal);
-                        tvCalories.setText("1450"); // sau này tính tự động
+                        int tdee = calculateTDEE(user);
+                        tvCalories.setText(String.valueOf(tdee));
 
                         tvBreakfast.setText(doc.contains("breakfast") ? doc.getString("breakfast") : "");
                         tvLunch.setText(doc.contains("lunch") ? doc.getString("lunch") : "");
@@ -102,65 +129,4 @@ public class MainActivity extends AppCompatActivity {
                 );
     }
 
-    private void setupFooterNavigation() {
-
-        tabHome.setOnClickListener(v -> {
-            highlightSelectedTab(0);
-            // đang ở trang Home → không chuyển Activity
-        });
-
-//        tabDiary.setOnClickListener(v -> {
-//            highlightSelectedTab(1);
-//            startActivity(new Intent(this, DiaryActivity.class));
-//        });
-//
-//        tabSuggest.setOnClickListener(v -> {
-//            highlightSelectedTab(2);
-//            startActivity(new Intent(this, SuggestActivity.class));
-//        });
-//
-//        tabUser.setOnClickListener(v -> {
-//            highlightSelectedTab(3);
-//            startActivity(new Intent(this, UserActivity.class));
-//        });
-    }
-
-    // Đổi màu icon + text khi chọn tab
-    private void highlightSelectedTab(int index) {
-
-        resetTabs(); // reset về màu xám
-
-        switch (index) {
-            case 0:
-                iconHome.setColorFilter(Color.parseColor("#00C569"));
-                txtHome.setTextColor(Color.parseColor("#00C569"));
-                break;
-            case 1:
-                iconDiary.setColorFilter(Color.parseColor("#00C569"));
-                txtDiary.setTextColor(Color.parseColor("#00C569"));
-                break;
-            case 2:
-                iconSuggest.setColorFilter(Color.parseColor("#00C569"));
-                txtSuggest.setTextColor(Color.parseColor("#00C569"));
-                break;
-            case 3:
-                iconUser.setColorFilter(Color.parseColor("#00C569"));
-                txtUser.setTextColor(Color.parseColor("#00C569"));
-                break;
-        }
-    }
-
-    private void resetTabs() {
-        int defaultColor = Color.parseColor("#777777");
-
-        iconHome.setColorFilter(defaultColor);
-        iconDiary.setColorFilter(defaultColor);
-        iconSuggest.setColorFilter(defaultColor);
-        iconUser.setColorFilter(defaultColor);
-
-        txtHome.setTextColor(defaultColor);
-        txtDiary.setTextColor(defaultColor);
-        txtSuggest.setTextColor(defaultColor);
-        txtUser.setTextColor(defaultColor);
-    }
 }
